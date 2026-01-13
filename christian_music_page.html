@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музика | Християнський Медіа-Архів</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-purple: #a78bfa;
+            --accent-pink: #f472b6;
+            --accent-blue: #38bdf8;
+            --accent-green: #22c55e;
+            --text-main: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(167, 139, 250, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(244, 114, 182, 0.15) 0%, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        /* Верхнє меню */
+        .header {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 5px;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: rgba(244, 114, 182, 0.15);
+            color: var(--accent-pink);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* Основний контент */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Музичний плеєр */
+        .music-player-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .main-player-card {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.1));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(167, 139, 250, 0.2);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .player-info {
+            margin-top: 25px;
+        }
+
+        .now-playing {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-pink);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .now-playing .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-pink);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .song-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .song-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .song-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Плейлист панель */
+        .playlist-sidebar {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 25px;
+            max-height: 650px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .playlist-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .playlist-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .playlist-title i {
+            color: var(--accent-purple);
+        }
+
+        .playlist-count {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--accent-purple);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .category-filters {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-filters button {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .category-filters button:hover {
+            background: rgba(167, 139, 250, 0.15);
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .category-filters button.active {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(244, 114, 182, 0.3));
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+        }
+
+        .songs-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-right: 10px;
+        }
+
+        .song-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .song-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .song-item.active {
+            background: linear-gradient(90deg, rgba(167, 139, 250, 0.15), rgba(244, 114, 182, 0.15));
+            border-color: var(--accent-pink);
+        }
+
+        .song-thumbnail {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .song-thumbnail img {
+            width: 90px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .song-details {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .song-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.3;
+        }
+
+        .song-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .song-artist {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .song-date {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #64748b;
+        }
+
+        /* Скролбар */
+        .songs-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .songs-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 10px;
+        }
+
+        .songs-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        /* Футер */
+        footer {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-pink);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-purple);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(244, 114, 182, 0.3));
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #64748b;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Адаптивність */
+        @media (max-width: 1024px) {
+            .music-player-section {
+                grid-template-columns: 1fr;
+            }
+
+            .playlist-sidebar {
+                max-height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 20px;
+                transition: left 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .category-filters {
+                grid-template-columns: 1fr;
+            }
+
+            .song-thumbnail img {
+                width: 80px;
+                height: 45px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+        }
+
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .music-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav-container">
+        <a href="index.html" class="logo">
+            <i class="fas fa-church"></i>
+            <span>Дім Євангелія</span>
+        </a>
+        
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html"><i class="fas fa-microphone"></i> Проповіді</a></li>
+            <li><a href="muzyka.html" class="active"><i class="fas fa-music"></i> Музика</a></li>
+            <li><a href="#books"><i class="fas fa-book"></i> Книги</a></li>
+            <li><a href="#programs"><i class="fas fa-desktop"></i> Програми</a></li>
+            <li><a href="#bible"><i class="fas fa-bible"></i> Читання Біблії</a></li>
+        </ul>
+
+        <button class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<main class="main-content">
+    <div class="section-header">
+        <h1 class="section-title">
+            <i class="fas fa-music"></i>
+            Християнська Музика
+        </h1>
+        <p class="section-subtitle">Worship пісні, караоке та християнські гімни</p>
+    </div>
+
+    <div class="music-player-section">
+        <div class="main-player-card">
+            <div class="video-wrapper">
+                <iframe id="mainPlayer" src="" allowfullscreen></iframe>
+            </div>
+            <div class="player-info">
+                <div class="now-playing">
+                    <div class="pulse"></div>
+                    Зараз грає
+                </div>
+                <h2 class="song-title" id="currentTitle">Завантаження...</h2>
+                <div class="song-meta">
+                    <span id="currentArtist"><i class="fas fa-user-music"></i> Оберіть пісню</span>
+                    <span id="currentDate"><i class="fas fa-calendar"></i> --</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="playlist-sidebar">
+            <div class="playlist-header">
+                <div class="playlist-title">
+                    <i class="fas fa-list-music"></i>
+                    Плейлист
+                </div>
+                <div class="playlist-count" id="songCount">0</div>
+            </div>
+            
+            <div class="category-filters">
+                <button class="active" onclick="filterSongs('all')">
+                    <i class="fas fa-th-large"></i> Всі
+                </button>
+                <button onclick="filterSongs('worship')">
+                    <i class="fas fa-hands"></i> Worship
+                </button>
+                <button onclick="filterSongs('karaoke')">
+                    <i class="fas fa-microphone-alt"></i> Караоке
+                </button>
+                <button onclick="filterSongs('hymns')">
+                    <i class="fas fa-book-open"></i> Гімни
+                </button>
+            </div>
+
+            <div id="songsList" class="songs-list">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Завантаження музики...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3><i class="fas fa-church"></i> Про нас</h3>
+            <p>Церква "Дім Євангелія" - місце, де кожен може зустріти Бога та знайти своє призначення.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3><i class="fas fa-link"></i> Посилання</h3>
+            <a href="index.html">Проповіді</a>
+            <a href="muzyka.html">Музика</a>
+            <a href="#books">Книги</a>
+            <a href="#programs">Програми</a>
+            <a href="#bible">Читання Біблії</a>
+        </div>
+
+        <div class="footer-section">
+            <h3><i class="fas fa-map-marker-alt"></i> Контакти</h3>
+            <p><i class="fas fa-map-pin"></i> м. Суми, Україна</p>
+            <p><i class="fas fa-envelope"></i> info@gospel.org.ua</p>
+            <p><i class="fas fa-phone"></i> +380 XX XXX XX XX</p>
+        </div>
+
+        <div class="footer-section">
+            <h3><i class="fas fa-clock"></i> Розклад служінь</h3>
+            <p>Неділя: 09:00 - Ранкове служіння</p>
+            <p>Неділя: 16:00 - Молодіжне служіння</p>
+            <p>Середа: 19:00 - Молитовне служіння</p>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>© 2025 Церква "Дім Євангелія", м. Суми | Створено з <i class="fas fa-heart" style="color: var(--accent-pink);"></i></p>
+    </div>
+</footer>
+
+<script>
+    // Підключення до бази даних (поки що спільна)
+    const JSON_URL = 'https://raw.githubusercontent.com/christian-word/hristian-media/refs/heads/main/json/database.json';
+    const player = document.getElementById('mainPlayer');
+    const listContainer = document.getElementById('songsList');
+    const currentTitle = document.getElementById('currentTitle');
+    const currentArtist = document.getElementById('currentArtist');
+    const currentDate = document.getElementById('currentDate');
+    const songCount = document.getElementById('songCount');
+
+    let allSongs = [];
+    let currentFilter = 'all';
+
+    // Ініціалізація плеєра
+    async function initPlayer() {
+        try {
+            const response = await fetch(JSON_URL);
+            allSongs = await response.json();
+
+            if (allSongs.length === 0) {
+                listContainer.innerHTML = '<p class="loading">Пісні не знайдено</p>';
+                return;
+            }
+
+            // Обробляємо дати
+            allSongs = allSongs.map((song, index) => {
+                const songDate = song.publishedAt || song.date || (Date.now() - (index * 86400000));
+                const parsedDate = typeof songDate === 'string' ? new Date(songDate).getTime() : songDate;
+                
+                return {
+                    ...song,
+                    addedDate: parsedDate,
+                    category: song.category || 'worship' // Категорія за замовчуванням
+                };
+            });
+
+            // Оновлюємо лічильник
+            songCount.textContent = allSongs.length;
+
+            // Завантажуємо першу пісню
+            playSong(allSongs[0], 0);
+            
+            // Показуємо плейлист
+            renderPlaylist();
+
+        } catch (e) {
+            listContainer.innerHTML = '<p class="loading">Помилка завантаження бази даних</p>';
+            console.error(e);
+        }
+    }
+
+    // Відображення плейлиста
+    function renderPlaylist() {
+        let songsToShow = allSongs;
+
+        // Фільтрація за категорією
+        if (currentFilter !== 'all') {
+            songsToShow = allSongs.filter(s => s.category === currentFilter);
+        }
+
+        if (songsToShow.length === 0) {
+            listContainer.innerHTML = '<p class="loading">Пісні не знайдено в цій категорії</p>';
+            return;
+        }
+
+        listContainer.innerHTML = songsToShow.map((song, index) => {
+            const actualIndex = allSongs.indexOf(song);
+            const date = new Date(song.addedDate).toLocaleDateString('uk-UA', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+            
+            return `
+                <div class="song-item ${actualIndex === 0 ? 'active' : ''}" 
+                     onclick="playSong(allSongs[${actualIndex}], ${actualIndex})" 
+                     data-index="${actualIndex}">
+                    <div class="song-thumbnail">
+                        <img src="${song.thumbnail}" alt="thumbnail">
+                    </div>
+                    <div class="song-details">
+                        <div class="song-name">${song.title}</div>
+                        <div class="song-meta-row">
+                            <div class="song-artist">
+                                <i class="fas fa-user"></i>
+                                ${song.channel}
+                            </div>
+                            <div class="song-date">
+                                <i class="fas fa-calendar"></i>
+                                ${date}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Відтворення пісні
+    function playSong(song, index) {
+        player.src = `https://www.youtube.com/embed/${song.videoId}?autoplay=1`;
+        currentTitle.textContent = song.title;
+        
+        const date = new Date(song.addedDate).toLocaleDateString('uk-UA', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        
+        currentArtist.innerHTML = `<i class="fas fa-user-music"></i> ${song.channel}`;
+        currentDate.innerHTML = `<i class="fas fa-calendar"></i> ${date}`;
+
+        // Оновлюємо активний елемент
+        document.querySelectorAll('.song-item').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        const activeItem = document.querySelector(`.song-item[data-index="${index}"]`);
+        if (activeItem) {
+            activeItem.classList.add('active');
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    // Фільтрація пісень
+    function filterSongs(filter) {
+        currentFilter = filter;
+        
+        // Оновлюємо активну кнопку
+        document.querySelectorAll('.category-filters button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.closest('button').classList.add('active');
+        
+        renderPlaylist();
+    }
+
+    // Мобільне меню
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Закриття меню при кліку на посилання
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            mobileToggle.querySelector('i').classList.add('fa-bars');
+            mobileToggle.querySelector('i').classList.remove('fa-times');
+        });
+    });
+
+    // Запуск
+    initPlayer();
+</script>
+
+</body>
+</html>
