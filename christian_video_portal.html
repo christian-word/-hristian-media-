@@ -950,7 +950,7 @@
 
 // Відтворення відео
 function playVideo(video, index) {
-    // Додаємо autoplay=1 для автоматичного відтворення
+    // Автозапуск відео
     player.src = `https://www.youtube.com/embed/${video.videoId}?autoplay=1`;
     currentTitle.textContent = decodeHTML(video.title);
     currentMeta.innerHTML = `
@@ -971,7 +971,6 @@ function playVideo(video, index) {
 
     // Скрол до відеоплеєра (тільки на мобільних)
     if (window.innerWidth <= 968) {
-        // Затримка, щоб дати час завантажитись iframe
         setTimeout(() => {
             const videoPlayer = document.querySelector('.video-player');
             if (videoPlayer) {
