@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -599,8 +599,8 @@
         </a>
         
         <ul class="nav-menu" id="navMenu">
-            <li><a href="christian_video_portal.html"><i class="fas fa-microphone"></i> Проповіді</a></li>
-            <li><a href="#" class="active"><i class="fas fa-music"></i> Музика</a></li>
+            <li><a href="index.html"><i class="fas fa-microphone"></i> Проповіді</a></li>
+            <li><a href="muzyka.html" class="active"><i class="fas fa-music"></i> Музика</a></li>
             <li><a href="#books"><i class="fas fa-book"></i> Книги</a></li>
             <li><a href="#programs"><i class="fas fa-desktop"></i> Програми</a></li>
             <li><a href="#bible"><i class="fas fa-bible"></i> Читання Біблії</a></li>
@@ -736,6 +736,13 @@
     let currentFilter = 'all';
     let searchQuery = '';
 
+    // Декодування HTML entities
+    function decodeHTML(text) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = text;
+        return textarea.value;
+    }
+
     // Ініціалізація плеєра
     async function initPlayer() {
         try {
@@ -809,6 +816,7 @@
                 month: 'short',
                 year: 'numeric'
             });
+            const decodedTitle = decodeHTML(song.title);
             
             return `
                 <div class="song-item ${actualIndex === 0 ? 'active' : ''}" 
@@ -818,7 +826,7 @@
                         <img src="${song.thumbnail}" alt="thumbnail">
                     </div>
                     <div class="song-details">
-                        <div class="song-name">${song.title}</div>
+                        <div class="song-name">${decodedTitle}</div>
                         <div class="song-meta-row">
                             <div class="song-artist">
                                 <i class="fas fa-user"></i>
@@ -838,7 +846,7 @@
     // Відтворення пісні
     function playSong(song, index) {
         player.src = `https://www.youtube.com/embed/${song.videoId}?autoplay=1`;
-        currentTitle.textContent = song.title;
+        currentTitle.textContent = decodeHTML(song.title);
         
         const date = new Date(song.addedDate).toLocaleDateString('uk-UA', {
             day: 'numeric',
