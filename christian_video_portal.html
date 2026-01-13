@@ -1,0 +1,991 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проповіді - Дім Євангелія</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-green: #2D6A4F;
+            --primary-blue: #457B9D;
+            --text-dark: #2B2D42;
+            --text-gray: #6B7280;
+            --bg-cream: #FAF9F6;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-cream);
+            line-height: 1.6;
+        }
+
+        /* HEADER - ідентичний до головної */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-green);
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu > li > a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            padding: 10px 0;
+        }
+
+        .nav-menu > li > a:hover,
+        .nav-menu > li > a.active {
+            color: var(--primary-gold);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 15px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .nav-menu li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 25px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg-cream);
+            color: var(--primary-gold);
+            padding-left: 35px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            padding: 60px 30px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        .player-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* VIDEO PLAYER */
+        .video-player {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-info {
+            padding: 25px 0 0;
+        }
+
+        .video-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .video-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .video-meta i {
+            color: var(--primary-gold);
+        }
+
+        /* PLAYLIST PANEL */
+        .playlist-panel {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .playlist-header {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--bg-cream);
+        }
+
+        .playlist-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .playlist-title i {
+            color: var(--primary-gold);
+        }
+
+        .source-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .source-tabs button {
+            padding: 12px;
+            background: var(--bg-cream);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .source-tabs button:hover {
+            border-color: var(--primary-gold);
+            color: var(--text-dark);
+        }
+
+        .source-tabs button.active {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            color: var(--white);
+            border-color: var(--primary-green);
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            background: var(--bg-cream);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            background: var(--white);
+            border-color: var(--primary-gold);
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-gray);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-gold);
+            pointer-events: none;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-tabs button {
+            flex: 1;
+            padding: 10px;
+            background: var(--bg-cream);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .filter-tabs button:hover {
+            border-color: var(--primary-gold);
+            color: var(--text-dark);
+        }
+
+        .filter-tabs button.active {
+            background: var(--primary-gold);
+            color: var(--text-dark);
+            border-color: var(--primary-gold);
+        }
+
+        .video-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-right: 5px;
+        }
+
+        .video-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .video-list::-webkit-scrollbar-thumb {
+            background: var(--primary-gold);
+            border-radius: 10px;
+        }
+
+        .video-list::-webkit-scrollbar-track {
+            background: var(--bg-cream);
+            border-radius: 10px;
+        }
+
+        .video-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-cream);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .video-item:hover {
+            background: var(--white);
+            border-color: var(--primary-gold);
+            transform: translateX(3px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .video-item.active {
+            background: linear-gradient(135deg, rgba(45, 106, 79, 0.1), rgba(69, 123, 157, 0.1));
+            border-color: var(--primary-green);
+        }
+
+        .video-item img {
+            width: 120px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .video-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .video-item-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .video-item-channel {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-bottom: 3px;
+        }
+
+        .video-item-date {
+            font-size: 0.75rem;
+            color: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .new-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--text-dark);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-gray);
+        }
+
+        /* FOOTER - ідентичний до головної */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 60px 30px 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gold);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .mobile-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 30px;
+                gap: 0;
+                overflow-y: auto;
+                transition: left 0.4s ease-in-out;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu > li {
+                width: 100%;
+                border-bottom: 1px solid var(--bg-cream);
+            }
+
+            .nav-menu > li > a {
+                padding: 20px 0;
+                font-size: 1.1rem;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--bg-cream);
+                margin-top: 10px;
+                border-radius: 8px;
+                display: none;
+            }
+
+            .nav-menu li.active .dropdown {
+                display: block;
+            }
+
+            .player-section {
+                grid-template-columns: 1fr;
+            }
+
+            .playlist-panel {
+                max-height: 500px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+
+            .logo-text p {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 30px 15px;
+            }
+
+            .video-player,
+            .playlist-panel {
+                padding: 15px;
+            }
+
+            .video-item img {
+                width: 100px;
+                height: 56px;
+            }
+
+            .source-tabs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <i class="fas fa-church"></i>
+            <div class="logo-text">
+                <h1>Дім Євангелія</h1>
+                <p>Церква м. Суми</p>
+            </div>
+        </a>
+
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                <li>
+                    <a href="#"><i class="fas fa-users"></i> Про нас <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="index.html#about">Наша історія</a>
+                        <a href="#team">Пастор та служителі</a>
+                        <a href="#values">Наші цінності</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-hands-praying"></i> Служіння <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="index.html#schedule">Розклад служінь</a>
+                        <a href="#sunday-school">Недільна школа</a>
+                        <a href="#youth">Молодіжне служіння</a>
+                        <a href="#kids">Дитяче служіння</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="active"><i class="fas fa-photo-video"></i> Медіа <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="christian_video_portal.html">Проповіді</a>
+                        <a href="christian_music_page.html">Музика / Worship</a>
+                        <a href="#gallery">Фотогалерея</a>
+                        <a href="#livestream">Livestream</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-book"></i> Ресурси <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="#bible">Читання Біблії</a>
+                        <a href="#books">Книги</a>
+                        <a href="#programs">Програми</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Контакти</a></li>
+            </ul>
+        </nav>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Відкрити меню">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<div class="page-header">
+    <h1>Проповіді та служіння</h1>
+    <p>Слово Боже для вашого духовного зростання</p>
+</div>
+
+<main class="main-content">
+    <div class="player-section">
+        <div class="video-player">
+            <div class="video-wrapper">
+                <iframe id="mainPlayer" src="" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h2 class="video-title" id="currentTitle">Завантаження...</h2>
+                <div class="video-meta" id="currentMeta">
+                    <span><i class="fas fa-user"></i> Оберіть відео зі списку</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="playlist-panel">
+            <div class="playlist-header">
+                <div class="playlist-title">
+                    <i class="fas fa-list"></i>
+                    Плейлист
+                </div>
+                
+                <div class="source-tabs">
+                    <button class="active" onclick="switchSource('our')">
+                        <i class="fas fa-church"></i>
+                        Наші проповіді
+                    </button>
+                    <button onclick="switchSource('recommended')">
+                        <i class="fas fa-star"></i>
+                        Рекомендовані
+                    </button>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Пошук проповідей..." onkeyup="searchVideos()">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="active" onclick="filterVideos('all')">Всі</button>
+                    <button onclick="filterVideos('new')">Нові</button>
+                    <button onclick="filterVideos('old')">Архів</button>
+                </div>
+            </div>
+
+            <div id="videoList" class="video-list">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Завантаження плейлиста...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer" id="contact">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Про церкву</h3>
+            <p>Церква "Дім Євангелія" - спільнота віруючих у м. Суми, що живе за Словом Божим.</p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Швидкі посилання</h3>
+            <a href="index.html">Головна</a>
+            <a href="index.html#about">Про нас</a>
+            <a href="christian_video_portal.html">Проповіді</a>
+            <a href="christian_music_page.html">Музика</a>
+            <a href="index.html#contact">Контакти</a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Розклад служінь</h3>
+            <p>Неділя: 09:00 - Ранкове служіння</p>
+            <p>Неділя: 16:00 - Молодіжне служіння</p>
+            <p>Середа: 19:00 - Молитовне служіння</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Контакти</h3>
+            <p><i class="fas fa-map-marker-alt"></i> м. Суми, Україна</p>
+            <p><i class="fas fa-envelope"></i> info@gospel.org.ua</p>
+            <p><i class="fas fa-phone"></i> +380 XX XXX XX XX</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 Церква "Дім Євангелія", м. Суми. Всі права захищені.</p>
+    </div>
+</footer>
+
+<script>
+    const JSON_URL = 'https://raw.githubusercontent.com/christian-word/hristian-media/refs/heads/main/json/database.json';
+    const player = document.getElementById('mainPlayer');
+    const listContainer = document.getElementById('videoList');
+    const currentTitle = document.getElementById('currentTitle');
+    const currentMeta = document.getElementById('currentMeta');
+
+    let allVideos = [];
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    async function initPlayer() {
+        try {
+            const response = await fetch(JSON_URL);
+            allVideos = await response.json();
+
+            if (allVideos.length === 0) {
+                listContainer.innerHTML = '<p class="loading">Відео не знайдено</p>';
+                return;
+            }
+
+            allVideos = allVideos.map((video, index) => {
+                const videoDate = video.publishedAt || video.date || (Date.now() - (index * 86400000));
+                const parsedDate = typeof videoDate === 'string' ? new Date(videoDate).getTime() : videoDate;
+                
+                return {
+                    ...video,
+                    addedDate: parsedDate,
+                    isNew: index < 5
+                };
+            });
+
+            playVideo(allVideos[0], 0);
+            renderPlaylist();
+
+        } catch (e) {
+            listContainer.innerHTML = '<p class="loading">Помилка завантаження бази даних</p>';
+            console.error(e);
+        }
+    }
+
+    function decodeHTML(text) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = text;
+        return textarea.value;
+    }
+
+    function renderPlaylist() {
+        let videosToShow = allVideos;
+
+        if (currentFilter === 'new') {
+            videosToShow = allVideos.filter(v => v.isNew);
+        } else if (currentFilter === 'old') {
+            videosToShow = allVideos.filter(v => !v.isNew);
+        }
+
+        if (videosToShow.length === 0) {
+            listContainer.innerHTML = '<p class="loading">Відео не знайдено</p>';
+            return;
+        }
+
+        listContainer.innerHTML = videosToShow.map((video, index) => {
+            const actualIndex = allVideos.indexOf(video);
+            const date = new Date(video.addedDate).toLocaleDateString('uk-UA');
+            const decodedTitle = decodeHTML(video.title);
+            
+            return `
+                <div class="video-item ${actualIndex === 0 ? 'active' : ''}" 
+                     onclick="playVideo(allVideos[${actualIndex}], ${actualIndex})" 
+                     data-index="${actualIndex}">
+                    <img src="${video.thumbnail}" alt="thumbnail">
+                    <div class="video-item-info">
+                        <div class="video-item-title">
+                            ${decodedTitle}
+                            ${video.isNew ? '<span class="new-badge">Нове</span>' : ''}
+                        </div>
+                        <div class="video-item-channel">${video.channel}</div>
+                        <div class="video-item-date">
+                            <i class="fas fa-calendar"></i>
+                            ${date}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function playVideo(video, index) {
+        player.src = `https://www.youtube.com/embed/${video.videoId}?autoplay=1`;
+        currentTitle.textContent = decodeHTML(video.title);
+        currentMeta.innerHTML = `
+            <span><i class="fas fa-user"></i> ${video.channel}</span>
+            <span><i class="fas fa-calendar"></i> ${new Date(video.addedDate).toLocaleDateString('uk-UA')}</span>
+        `;
+
+        document.querySelectorAll('.video-item').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        const activeItem = document.querySelector(`.video-item[data-index="${index}"]`);
+        if (activeItem) {
+            activeItem.classList.add('active');
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    function filterVideos(filter) {
+        currentFilter = filter;
+        
+        document.querySelectorAll('.filter-tabs button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        renderPlaylist();
+    }
+
+    function searchVideos() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        document.querySelectorAll('.video-item').forEach(item => {
+            const title = item.querySelector('.video-item-title').textContent.toLowerCase();
+            const channel = item.querySelector('.video-item-channel').textContent.toLowerCase();
+            
+            if (title.includes(query) || channel.includes(query)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function switchSource(source) {
+        document.querySelectorAll('.source-tabs button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Тут можна додати логіку для різних джерел
+        console.log('Switched to:', source);
+    }
+
+    // Мобільне меню
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+                
+                const icon = mobileToggle.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.replace('fa-bars', 'fa-times');
+                } else {
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    const hasDropdown = link.nextElementSibling && link.nextElementSibling.classList.contains('dropdown');
+                    const isDropdownLink = link.closest('.dropdown');
+                    
+                    if (window.innerWidth <= 968 && (!hasDropdown || isDropdownLink)) {
+                        navMenu.classList.remove('active');
+                        mobileToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    }
+                });
+            });
+        }
+
+        document.querySelectorAll('.nav-menu > li > a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const dropdown = link.nextElementSibling;
+                if (window.innerWidth <= 968 && dropdown && dropdown.classList.contains('dropdown')) {
+                    e.preventDefault();
+                    
+                    document.querySelectorAll('.nav-menu > li').forEach(item => {
+                        if (item !== link.parentElement) {
+                            item.classList.remove('active');
+                        }
+                    });
+                    
+                    link.parentElement.classList.toggle('active');
+                }
+            });
+        });
+
+        // Ініціалізація плеєра
+        initPlayer();
+    });
+  </script>
+
+</body>
+</html>          
