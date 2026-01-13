@@ -1,0 +1,979 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дім Євангелія - Церква м. Суми</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-green: #2D6A4F;
+            --primary-blue: #457B9D;
+            --text-dark: #2B2D42;
+            --text-gray: #6B7280;
+            --bg-cream: #FAF9F6;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-cream);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-green);
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu > li > a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            padding: 10px 0;
+        }
+
+        .nav-menu > li > a:hover {
+            color: var(--primary-gold);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 15px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .nav-menu li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 25px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg-cream);
+            color: var(--primary-gold);
+            padding-left: 35px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(45, 106, 79, 0.7), rgba(43, 45, 66, 0.7)),
+                        url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1600') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 30px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--primary-gold);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            background: #C19B2F;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        /* SECTION COMMON */
+        .section {
+            padding: 80px 30px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        /* SCHEDULE SECTION */
+        .schedule {
+            background: var(--white);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .schedule-card {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            padding: 40px;
+            border-radius: 20px;
+            color: var(--white);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .schedule-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .schedule-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .schedule-card .time {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .schedule-card p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* QUICK ACCESS */
+        .quick-access {
+            background: var(--bg-cream);
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .quick-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .quick-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .quick-card i {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .quick-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .quick-card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* LATEST SERMONS */
+        .sermons {
+            background: var(--white);
+        }
+
+        .sermons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .sermon-card {
+            background: var(--bg-cream);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .sermon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .sermon-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #333;
+        }
+
+        .sermon-thumbnail img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sermon-thumbnail .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+
+        .sermon-card:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--primary-gold);
+        }
+
+        .sermon-content {
+            padding: 25px;
+        }
+
+        .sermon-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .sermon-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        .sermon-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .view-all {
+            text-align: center;
+        }
+
+        .btn-outline {
+            padding: 15px 40px;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            background: transparent;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-gold);
+            color: var(--text-dark);
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background: var(--bg-cream);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 60px 30px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-gold);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gold);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 968px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 30px;
+                gap: 0;
+                overflow-y: auto;
+                transition: left 0.3s;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu > li {
+                width: 100%;
+                border-bottom: 1px solid var(--bg-cream);
+            }
+
+            .nav-menu > li > a {
+                padding: 20px 0;
+                font-size: 1.1rem;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--bg-cream);
+                margin-top: 10px;
+                border-radius: 8px;
+                display: none;
+            }
+
+            .nav-menu li.active .dropdown {
+                display: block;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero {
+                height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+
+            .logo-text p {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .schedule-grid,
+            .quick-grid,
+            .sermons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <i class="fas fa-church"></i>
+            <div class="logo-text">
+                <h1>Дім Євангелія</h1>
+                <p>Церква м. Суми</p>
+            </div>
+        </a>
+
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                <li>
+                    <a href="#"><i class="fas fa-users"></i> Про нас <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="#about">Наша історія</a>
+                        <a href="#team">Пастор та служителі</a>
+                        <a href="#values">Наші цінності</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-hands-praying"></i> Служіння <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="#schedule">Розклад служінь</a>
+                        <a href="#sunday-school">Недільна школа</a>
+                        <a href="#youth">Молодіжне служіння</a>
+                        <a href="#kids">Дитяче служіння</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-photo-video"></i> Медіа <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="christian_video_portal.html">Проповіді</a>
+                        <a href="christian_music_page.html">Музика / Worship</a>
+                        <a href="#gallery">Фотогалерея</a>
+                        <a href="#livestream">Livestream</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-book"></i> Ресурси <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                    <div class="dropdown">
+                        <a href="#bible">Читання Біблії</a>
+                        <a href="#books">Книги</a>
+                        <a href="#programs">Програми</a>
+                    </div>
+                </li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Контакти</a></li>
+            </ul>
+        </nav>
+
+        <button class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Ласкаво просимо до Дому Євангелія</h1>
+        <p>Місце, де Бог зустрічає людей</p>
+        <div class="hero-buttons">
+            <a href="#schedule" class="btn btn-primary">
+                <i class="fas fa-calendar-alt"></i>
+                Наступне служіння
+            </a>
+            <a href="#livestream" class="btn btn-secondary">
+                <i class="fas fa-video"></i>
+                Дивитись онлайн
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SCHEDULE SECTION -->
+<section class="section schedule" id="schedule">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Розклад служінь</h2>
+            <p class="section-subtitle">Приєднуйтесь до нас на богослужіннях</p>
+        </div>
+
+        <div class="schedule-grid">
+            <div class="schedule-card">
+                <i class="fas fa-sun"></i>
+                <h3>Недільне служіння</h3>
+                <div class="time">09:00</div>
+                <p>Ранкове богослужіння з проповіддю та поклонінням</p>
+            </div>
+
+            <div class="schedule-card">
+                <i class="fas fa-users"></i>
+                <h3>Молодіжне служіння</h3>
+                <div class="time">16:00</div>
+                <p>Неділя - зустріч для молоді</p>
+            </div>
+
+            <div class="schedule-card">
+                <i class="fas fa-praying-hands"></i>
+                <h3>Молитовне служіння</h3>
+                <div class="time">19:00</div>
+                <p>Середа - спільна молитва</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUICK ACCESS -->
+<section class="section quick-access">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Швидкий доступ</h2>
+            <p class="section-subtitle">Перегляньте наші ресурси</p>
+        </div>
+
+        <div class="quick-grid">
+            <a href="sermons.html" class="quick-card">
+                <i class="fas fa-microphone"></i>
+                <h3>Проповіді</h3>
+                <p>Слухайте записи проповідей</p>
+            </a>
+
+            <a href="christian_music_page.html" class="quick-card">
+                <i class="fas fa-music"></i>
+                <h3>Музика</h3>
+                <p>Worship та християнські пісні</p>
+            </a>
+
+            <a href="#bible" class="quick-card">
+                <i class="fas fa-bible"></i>
+                <h3>Біблія онлайн</h3>
+                <p>Читайте Святе Письмо</p>
+            </a>
+
+            <a href="#livestream" class="quick-card">
+                <i class="fas fa-video"></i>
+                <h3>Онлайн-трансляція</h3>
+                <p>Дивіться служіння наживо</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- LATEST SERMONS -->
+<section class="section sermons">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Останні проповіді</h2>
+            <p class="section-subtitle">Нові повчання та натхнення</p>
+        </div>
+
+        <div class="sermons-grid" id="latestSermons">
+            <!-- Буде заповнено через JavaScript -->
+        </div>
+
+        <div class="view-all">
+            <a href="sermons.html" class="btn-outline">
+                Дивитись всі проповіді
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section about" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800" alt="Церква">
+            </div>
+            <div class="about-text">
+                <h2>Хто ми?</h2>
+                <p>Церква "Дім Євангелія" - це спільнота віруючих у місті Суми, яка прагне жити за Словом Божим та нести Євангеліє людям.</p>
+                <p>Ми віримо, що кожна людина може особисто зустріти Бога та знайти своє призначення у Христі. Наша мета - будувати живу церкву, де панує любов, віра та надія.</p>
+                <a href="#about" class="btn btn-primary">
+                    Дізнатись більше
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Про церкву</h3>
+            <p>Церква "Дім Євангелія" - спільнота віруючих у м. Суми, що живе за Словом Божим.</p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Швидкі посилання</h3>
+            <a href="index.html">Головна</a>
+            <a href="#about">Про нас</a>
+            <a href="christian_video_portal.html">Проповіді</a>
+            <a href="christian_music_page.html">Музика</a>
+            <a href="#contact">Контакти</a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Розклад служінь</h3>
+            <p>Неділя: 09:00 - Ранкове служіння</p>
+            <p>Неділя: 16:00 - Молодіжне служіння</p>
+            <p>Середа: 19:00 - Молитовне служіння</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Контакти</h3>
+            <p><i class="fas fa-map-marker-alt"></i> м. Суми, Україна</p>
+            <p><i class="fas fa-envelope"></i> info@gospel.org.ua</p>
+            <p><i class="fas fa-phone"></i> +380 XX XXX XX XX</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 Церква "Дім Євангелія", м. Суми. Всі права захищені.</p>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Mobile dropdown toggle
+    document.querySelectorAll('.nav-menu > li > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 968 && link.nextElementSibling) {
+                e.preventDefault();
+                link.parentElement.classList.toggle('active');
+            }
+        });
+    });
+
+    // Load latest sermons
+    async function loadLatestSermons() {
+        const container = document.getElementById('latestSermons');
+        
+        try {
+            const response = await fetch('https://raw.githubusercontent.com/christian-word/hristian-media/refs/heads/main/json/database.json');
+            const sermons = await response.json();
+            
+            // Показуємо тільки перші 4 проповіді
+            const latestSermons = sermons.slice(0, 4);
+            
+            container.innerHTML = latestSermons.map(sermon => {
+                const date = new Date(sermon.publishedAt || sermon.date).toLocaleDateString('uk-UA', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                
+                // Декодування HTML entities
+                const decodeHTML = (text) => {
+                    const textarea = document.createElement('textarea');
+                    textarea.innerHTML = text;
+                    return textarea.value;
+                };
+                
+                return `
+                    <div class="sermon-card" onclick="window.location.href='sermons.html'">
+                        <div class="sermon-thumbnail">
+                            <img src="${sermon.thumbnail}" alt="${sermon.title}">
+                            <div class="play-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="sermon-content">
+                            <h3>${decodeHTML(sermon.title)}</h3>
+                            <div class="sermon-meta">
+                                <span><i class="fas fa-user"></i> ${sermon.channel}</span>
+                                <span><i class="fas fa-calendar"></i> ${date}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+        } catch (error) {
+            console.error('Помилка завантаження проповідей:', error);
+            container.innerHTML = '<p style="text-align: center; color: var(--text-gray);">Помилка завантаження проповідей</p>';
+        }
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && document.querySelector(href)) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Закриваємо мобільне меню
+                if (window.innerWidth <= 968) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.querySelector('i').classList.add('fa-bars');
+                    mobileToggle.querySelector('i').classList.remove('fa-times');
+                }
+            }
+        });
+    });
+
+    // Завантажуємо проповіді при завантаженні сторінки
+    loadLatestSermons();
