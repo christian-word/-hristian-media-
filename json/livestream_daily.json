@@ -1,27 +1,27 @@
 {
-  "broadcastStartTime": "2026-01-19T20:19:53.201Z",
+  "broadcastStartTime": "2026-01-19T20:26:27.182Z",
   "programSchedule": [
+    {
+      "videoId": "4C5nDxbAtOQ",
+      "title": "Прославлення Господа 18.01.2026",
+      "duration": 1800,
+      "startTime": 0
+    },
     {
       "videoId": "Fmmx0Ws0HlA",
       "title": "\"Воля Божа\" (Числа 22:1-6). Артем Бакаєв, 18.01.2026",
       "duration": 1800,
-      "startTime": 0
+      "startTime": 1800
     },
     {
       "videoId": "lA9OOpKy_vs",
       "title": "\"Природа неверия\" ( Ев.Иоанна 9). Сергей Комисар, 18.01.2026",
       "duration": 1800,
-      "startTime": 1800
+      "startTime": 3600
     },
     {
       "videoId": "ONcNsDwlxu8",
       "title": "\"Боротьба за місце під серцем\" (Буття 4:1-16). Андрій Парфило, 11.01.2026",
-      "duration": 1800,
-      "startTime": 3600
-    },
-    {
-      "videoId": "uCfS6l75jM4",
-      "title": "Прославлення Господа 11.01.2026",
       "duration": 1800,
       "startTime": 5400
     },
@@ -164,8 +164,8 @@
       "startTime": 46800
     },
     {
-      "videoId": "QUsMmRthXzw",
-      "title": "Прославлення Господа 04.01.2026",
+      "videoId": "uCfS6l75jM4",
+      "title": "Прославлення Господа 11.01.2026",
       "duration": 1800,
       "startTime": 48600
     },
@@ -182,8 +182,8 @@
       "startTime": 52200
     },
     {
-      "videoId": "mKy6YljcgBI",
-      "title": "Прославлення Господа 01.01.2026",
+      "videoId": "QUsMmRthXzw",
+      "title": "Прославлення Господа 04.01.2026",
       "duration": 1800,
       "startTime": 54000
     },
@@ -200,8 +200,8 @@
       "startTime": 57600
     },
     {
-      "videoId": "UcbgyfVf1QI",
-      "title": "Прославлення Господа церквами ЄХБ м.Суми 28.12.2025",
+      "videoId": "mKy6YljcgBI",
+      "title": "Прославлення Господа 01.01.2026",
       "duration": 1800,
       "startTime": 59400
     },
@@ -212,8 +212,8 @@
       "startTime": 61200
     },
     {
-      "videoId": "m1VnEZyRGLo",
-      "title": "Прославлення Господа 28.12.2025",
+      "videoId": "UcbgyfVf1QI",
+      "title": "Прославлення Господа церквами ЄХБ м.Суми 28.12.2025",
       "duration": 1800,
       "startTime": 63000
     },
@@ -224,8 +224,8 @@
       "startTime": 64800
     },
     {
-      "videoId": "WZguwzFc7vs",
-      "title": "Прославлення Господа 25.12.2025",
+      "videoId": "m1VnEZyRGLo",
+      "title": "Прославлення Господа 28.12.2025",
       "duration": 1800,
       "startTime": 66600
     },
@@ -236,28 +236,34 @@
       "startTime": 68400
     },
     {
+      "videoId": "WZguwzFc7vs",
+      "title": "Прославлення Господа 25.12.2025",
+      "duration": 1800,
+      "startTime": 70200
+    },
+    {
       "videoId": "mXgvEa1MzFU",
       "title": "Прославлення Господа 25.12.2025, ранок",
       "duration": 1800,
-      "startTime": 70200
+      "startTime": 72000
     },
     {
       "videoId": "hPbZrYZ1ixg",
       "title": "Прославлення Господа 21.12.2025",
       "duration": 1800,
-      "startTime": 72000
+      "startTime": 73800
     },
     {
       "videoId": "El_YufGQ2WE",
       "title": "Прославлення Господа 14 грудня 2025 року",
       "duration": 1800,
-      "startTime": 73800
+      "startTime": 75600
     },
     {
       "videoId": "0HxJo-0V8bo",
       "title": "Прославлення Господа 7 грудня 2025 року",
       "duration": 1800,
-      "startTime": 75600
+      "startTime": 77400
     }
   ]
 }
