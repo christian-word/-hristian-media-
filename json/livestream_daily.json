@@ -1,29 +1,23 @@
 {
-  "broadcastStartTime": "2026-01-20T05:25:43.160Z",
+  "broadcastStartTime": "2026-01-20T05:26:28.651Z",
   "programSchedule": [
     {
-      "videoId": "mlvu_EkXMNA",
-      "title": "\"Світло життя\". Група, 06.07.2025",
+      "videoId": "z_lsdsqfRkk",
+      "title": "Прославлення Господа 28 липня 2024 року",
       "startTime": 0,
-      "duration": 12780
+      "duration": 21300
     },
     {
-      "videoId": "egBVaB2sWfc",
-      "title": "\"Не обманывайтесь\" (1Пет 1:14-16). Сергей Комисар, 29 января 2023 года",
-      "startTime": 12780,
-      "duration": 57420
+      "videoId": "1gIXQtmRbSI",
+      "title": "Дія віри в житті людини. Марйоха М.П. 17.05.2020",
+      "startTime": 21300,
+      "duration": 40920
     },
     {
-      "videoId": "7vn0veLroDA",
-      "title": "Жіноча конференція \" Спасешся ти і твій дім\". І частина. 13.12.2025",
-      "startTime": 70200,
-      "duration": 1920
-    },
-    {
-      "videoId": "nYRgoFICI5Q",
-      "title": "\"Притча про смоковницю та всі дерева. Виконання пророцтв\" (Луки 21:29). Віктор Лаба, 22.06.2025",
-      "startTime": 72120,
-      "duration": 78300
+      "videoId": "oJxdzt0mHsA",
+      "title": "\"Байдужість - найбільше горе нашого часу\" (Матвія 11:16-30). Олександр Іванченко, 23.02.2025",
+      "startTime": 62220,
+      "duration": 47640
     }
   ]
 }
