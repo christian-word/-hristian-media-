@@ -1,29 +1,29 @@
 {
-  "broadcastStartTime": "2026-01-20T05:23:37.519Z",
+  "broadcastStartTime": "2026-01-20T05:25:43.160Z",
   "programSchedule": [
     {
-      "videoId": "aFeMwPoiEY4",
-      "title": "\"Милості хочу, а не жертви\" (Матвія 9:9-13). Андрій Міщенко, 11.08.2024",
+      "videoId": "mlvu_EkXMNA",
+      "title": "\"Світло життя\". Група, 06.07.2025",
       "startTime": 0,
-      "duration": 36300
+      "duration": 12780
     },
     {
-      "videoId": "DeRL9OTYwOM",
-      "title": "Фрагмент Богослужіння 6 липня 2025 року",
-      "startTime": 36300,
-      "duration": 15360
+      "videoId": "egBVaB2sWfc",
+      "title": "\"Не обманывайтесь\" (1Пет 1:14-16). Сергей Комисар, 29 января 2023 года",
+      "startTime": 12780,
+      "duration": 57420
     },
     {
-      "videoId": "sDSRgvCLx10",
-      "title": "\"Милість Господа\". Загальний спів, 04.05.2025",
-      "startTime": 51660,
-      "duration": 18720
+      "videoId": "7vn0veLroDA",
+      "title": "Жіноча конференція \" Спасешся ти і твій дім\". І частина. 13.12.2025",
+      "startTime": 70200,
+      "duration": 1920
     },
     {
-      "videoId": "S4RgxrZkfL4",
-      "title": "\"Блаженні голодні та спрагнені правди\" (Матв. 5:2-6). Микола Марйоха, 22 жовтня 2023 року",
-      "startTime": 70380,
-      "duration": 59040
+      "videoId": "nYRgoFICI5Q",
+      "title": "\"Притча про смоковницю та всі дерева. Виконання пророцтв\" (Луки 21:29). Віктор Лаба, 22.06.2025",
+      "startTime": 72120,
+      "duration": 78300
     }
   ]
 }
