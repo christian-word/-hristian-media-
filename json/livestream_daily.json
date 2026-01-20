@@ -1,17 +1,29 @@
 {
-  "broadcastStartTime": "2026-01-20T05:16:31.568Z",
+  "broadcastStartTime": "2026-01-20T05:23:37.519Z",
   "programSchedule": [
     {
-      "videoId": "dfMTSjg_TVc",
-      "title": "Прославлення Господа 15 жовтня 2023 року",
+      "videoId": "aFeMwPoiEY4",
+      "title": "\"Милості хочу, а не жертви\" (Матвія 9:9-13). Андрій Міщенко, 11.08.2024",
       "startTime": 0,
-      "duration": 46080
+      "duration": 36300
     },
     {
-      "videoId": "FGRmbocFatY",
-      "title": "\"Як нам увійти у славу Божу?\". Фрагмент проповіді Віктора Лаби, 06.07.2024",
-      "startTime": 46080,
-      "duration": 52980
+      "videoId": "DeRL9OTYwOM",
+      "title": "Фрагмент Богослужіння 6 липня 2025 року",
+      "startTime": 36300,
+      "duration": 15360
+    },
+    {
+      "videoId": "sDSRgvCLx10",
+      "title": "\"Милість Господа\". Загальний спів, 04.05.2025",
+      "startTime": 51660,
+      "duration": 18720
+    },
+    {
+      "videoId": "S4RgxrZkfL4",
+      "title": "\"Блаженні голодні та спрагнені правди\" (Матв. 5:2-6). Микола Марйоха, 22 жовтня 2023 року",
+      "startTime": 70380,
+      "duration": 59040
     }
   ]
 }
